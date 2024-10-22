@@ -6,20 +6,28 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>420darts</title>
     <style>
-        a{
-            display:inline-block;
+        a {
+            display: inline-block;
             margin-top: 30px;
-            margin-left: 125px;
-            color: red;
+            /* margin-left: 125px; */
             font-size: 25px;
+            text-decoration: none;
         }
 
-        .replay{
+        a:hover {
+            color: rgb(255, 0, 93);
+        }
+
+        .replay {
             width: 100px;
             height: 40px;
             display: inline-block;
             margin-left: 50px;
             margin-bottom: 10px;
+        }
+
+        .replay:hover {
+            box-shadow: 0px 10px 10px #c8c8c8;
         }
 
         .v1 {
@@ -30,6 +38,8 @@
             height: 800px;
             background-color: pink;
             margin: 0 125px 50px;
+            background-image: url("420darts_image/image1.jpg");
+            background-size: cover;
         }
 
         .v1 .v2 {
@@ -37,7 +47,7 @@
             height: 200px;
             margin: 50px;
             margin-bottom: 0px;
-            background-color: yellow;
+            background-color: transparent;
 
         }
 
@@ -46,10 +56,13 @@
             height: 150px;
             margin: 50px;
             margin-bottom: 0px;
-            background-color: yellow;
+            background-color: rgba(32, 33, 29, 0.182);
             text-align: center;
             line-height: 150px;
-            font-size: 40px;
+            font-size: 80px;
+            border: 1px solid black;
+            color: white;
+            font-weight: bolder;
         }
 
         .v1 .v4 {
@@ -57,7 +70,9 @@
             height: 250px;
             margin: 50px;
             margin-bottom: 0px;
-            background-color: yellow;
+            background-color: rgba(14, 10, 10, 0.182);
+            color: white;
+            border: 1px solid black;
         }
 
         .v1 .v5 {
@@ -73,16 +88,17 @@
             height: 80px;
         }
 
-        .v2 select{
+        .v2 select {
             width: 300px;
             height: 50px;
             text-align: center;
             font-size: 20px;
+            margin-top: 50px;
         }
 
         .v6 button {
-            width: 100px;
-            height: 100px;
+            width: 50px;
+            height: 50px;
             border-radius: 50%;
         }
 
@@ -100,29 +116,70 @@
             border-color: white;
         }
 
-        button:hover{
-            cursor:pointer;
+        button:hover {
+            cursor: pointer;
             opacity: 0.6;
         }
 
-        button:active{
-            background-color:aquamarine
+        button:active {
+            background-color: aquamarine
         }
 
-        .active{
+        .active {
             background-color: red;
             color: yellow;
         }
 
-        .nothing{
-            background-color:aqua;
+        .nothing {
+            background-color: aqua;
+        }
+
+        .next {
+            opacity: 0.4;
+            position: relative;
+        }
+
+        .previous {
+            opacity: 0.4;
+            position: relative;
+        }
+
+        .active1:hover {
+            opacity: 1.0;
+        }
+
+        .v6 img {
+            width: 50%;
+            height: auto;
+        }
+
+        .img1{
+            width: 5%;
+            height: auto;
+            vertical-align: middle;
+            margin-left: 125px;
+        }
+
+        .img2{
+            background-image: url("420darts_image/dart2.png");
+            background-size: 25%;
+            background-repeat: no-repeat;
+            background-position: 10px center ;
+        }
+
+        .img3{
+            width: 25%;
+            height: auto;
+            vertical-align: middle;
+            margin-right: 10px;
         }
     </style>
 </head>
 
 <body>
+    <img src="420darts_image/dart1.png" alt="" class="img1">
     <a href="./userManual.html" target="_blank">User Manual</a>
-    <button class="replay" type="button">Replay</button>
+    <button class="replay" type="button"><img src="420darts_image/replay.png" alt="" class="img3">Replay</button>
     <div class="v1">
         <div class="v2">
             <select title="current round" class="myselect">
@@ -161,17 +218,17 @@
         </div>
         <div>
             <ul class="v6">
-                <il><button type="button" class="previous">previous</button></il>
+                <il><button type="button" class="previous active1"><img src="420darts_image/left.png" alt=""></button></il>
                 <il><button class="m1 reset" type="button">reset</button></il>
                 <il><button class="m1 confirm" type="button">confirm</button></il>
-                <il><button type="button" class="next">next</button></il>
+                <il><button type="button" class="next active1"><img src="420darts_image/right.png" alt=""></button></il>
             </ul>
         </div>
         <div>
             <ul class="v5">
-                <il><button type="button" data-id="1">one</button></il>
-                <il><button type="button" data-id="2">two</button></il>
-                <il><button type="button" data-id="3">three</button></il>
+                <il><button type="button" data-id="1" class="img2">one</button></il>
+                <il><button type="button" data-id="2" class="img2">two</button></il>
+                <il><button type="button" data-id="3" class="img2">three</button></il>
             </ul>
         </div>
     </div>
@@ -194,312 +251,275 @@
         const replay = document.querySelector('.replay');
 
         //分数
-        let arr = [-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1];
+        let arr = [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1];
 
-            let i = 1;
+        let i = 1;
 
-            //当前分数
-            let currentScore = 420;
-            current.innerHTML = "The current score is " + " " + currentScore;
+        //当前分数
+        let currentScore = 420;
+        current.innerHTML = "The current score is " + " " + currentScore;
 
-            //平均数
-            let meanScore = 0;
-            mean.innerHTML = "The mean is " + " " + meanScore;
+        //平均数
+        let meanScore = 0;
+        mean.innerHTML = "The mean is " + " " + meanScore;
 
-            //中位数
-            let medianScore = 0;
-            median.innerHTML = "The median is " + " " + medianScore;
+        //中位数
+        let medianScore = 0;
+        median.innerHTML = "The median is " + " " + medianScore;
 
-            //标准差
-            let standardDeviationScore = 0;
-            standardDeviation.innerHTML = "The standard deviation is "+" "+ standardDeviationScore;
+        //标准差
+        let standardDeviationScore = 0;
+        standardDeviation.innerHTML = "The standard deviation is " + " " + standardDeviationScore;
 
-            //最大值
-            let maxScore = 0;
-            max.innerHTML = "The max is " + " " + maxScore;
+        //最大值
+        let maxScore = 0;
+        max.innerHTML = "The max is " + " " + maxScore;
 
-            //最小值
-            let minScore = 0;
-            min.innerHTML = "The min is " + " " + minScore;
+        //最小值
+        let minScore = 0;
+        min.innerHTML = "The min is " + " " + minScore;
 
-            //当前轮数
+        //当前轮数
+        v3.innerHTML = i;
+
+        let nowarr = localStorage.getItem("arr");
+        if (nowarr) {
+            arr = JSON.parse(nowarr);
+            Score(arr, i);
+        }
+        if (arr[1] !== -1 && arr[1] !== 0) {
+            let theS = arr[1] / 2;
+            let theScore = document.querySelector(`[data-id="${theS}"]`);
+            theScore.classList.add('active');
+        }
+
+        replay.addEventListener('click', function () {
+            localStorage.removeItem("arr");
+            arr = [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1];
+            i = 1;
             v3.innerHTML = i;
-
-            let nowarr = localStorage.getItem("arr");
-            if(nowarr)
-            {
-                arr =  JSON.parse(nowarr);
-                Score(arr,i);
+            select.options[`${i - 1}`].selected = true;
+            Score(arr, i);
+            const active = document.querySelector('.active');
+            if (active) {
+                active.classList.remove('active');
             }
-            if(arr[1]!==-1&&arr[1]!==0)
-            {
-                let theS = arr[1]/2;
+        })
+
+        previous.addEventListener('click', function () {
+            if (i > 1) {
+                i--;
+                v3.innerHTML = i;
+                select.options[`${i - 1}`].selected = true;
+                const active = document.querySelector('.active');
+                if (active) {
+                    active.classList.remove('active');
+                }
+                if (arr[i] !== -1 && arr[i] !== 0) {
+                    let theS = arr[i] / i / 2;
+                    let theScore = document.querySelector(`[data-id="${theS}"]`);
+                    theScore.classList.add('active');
+                }
+                Score(arr, i);
+            } else {
+                alert('This is illegal operation');
+            }
+
+        })
+
+        ul.addEventListener('click', function (e) {
+            const active = document.querySelector('.active');
+            if (active && e.target.type === 'button') {
+                active.classList.remove('active');
+            }
+            if (e.target.type === 'button') {
+                e.target.classList.add('active');
+            }
+        })
+
+        confirm.addEventListener('click', function () {
+            const active = document.querySelector('.active');
+            if (!active) {
+                arr[i] = 0;
+            }
+            else {
+                arr[i] = active.dataset.id * i * 2;
+            }
+            let newarr = JSON.stringify(arr);
+            localStorage.setItem("arr", newarr);
+            let score = Score(arr, i);
+            if (score <= 0) {
+                alert('Success!')
+            }
+            let countx = 0;
+            arr.forEach(element => {
+                if (element !== -1) {
+                    countx++;
+                }
+            });
+            if (countx === 20 && score > 0) {
+                let num = prompt('The 21st round , You can only throw 3 darts in the Bull\'s Eye.How many darts did you hit?(0–one dart was not, 1– one dart, 2– two darts, 3– three darts)');
+                if (score - (+num) * 50 <= 0) {
+                    arr[0] = (+num) * 50;
+                    Score(arr, i);
+                    alert('Success!')
+                }
+                else {
+                    arr[0] = (+num) * 50;
+                    Score(arr, i);
+                    alert('Failure!')
+                }
+            }
+        })
+
+        reset.addEventListener('click', function () {
+            const active = document.querySelector('.active');
+            if (active) {
+                active.classList.remove('active');
+            }
+            arr[i] = -1;
+            Score(arr, i);
+        })
+
+        select.addEventListener('change', function (e) {
+            i = e.target.value;
+            v3.innerHTML = i;
+            const active = document.querySelector('.active');
+            if (active) {
+                active.classList.remove('active');
+            }
+            if (arr[i] !== -1 && arr[i] !== 0) {
+                let theS = arr[i] / i / 2;
                 let theScore = document.querySelector(`[data-id="${theS}"]`);
                 theScore.classList.add('active');
             }
+            Score(arr, i);
+        })
 
-            replay.addEventListener('click', function(){
-                localStorage.removeItem("arr");
-                arr = [-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1];
-                i = 1;
+        next.addEventListener('click', function () {
+            if (i < 20) {
+                i++;
                 v3.innerHTML = i;
-                select.options[`${i-1}`].selected = true;
-                Score(arr,i);
+                select.options[`${i - 1}`].selected = true;
                 const active = document.querySelector('.active');
-                if(active)
-                {
+                if (active) {
                     active.classList.remove('active');
                 }
-            })
+                if (arr[i] !== -1 && arr[i] !== 0) {
+                    let theS = arr[i] / i / 2;
+                    let theScore = document.querySelector(`[data-id="${theS}"]`);
+                    theScore.classList.add('active');
+                }
+                Score(arr, i);
+            } else {
+                alert('This is illegal operation');
+            }
+        })
 
-            previous.addEventListener('click', function () {
-                if (i > 1) {
-                    i--;
-                    v3.innerHTML = i;
-                    select.options[`${i-1}`].selected = true;
-                    const active = document.querySelector('.active');
-                    if(active)
-                    {
-                        active.classList.remove('active');
-                    }
-                    if(arr[i]!==-1&&arr[i]!==0)
-                    {
-                        let theS = arr[i]/i/2;
-                        let theScore = document.querySelector(`[data-id="${theS}"]`);
-                        theScore.classList.add('active');
-                    }
-                    Score(arr,i);
-                } else {
-                    alert('This is illegal operation');
-                }
-
-            })
-
-            ul.addEventListener('click', function(e){
-                const active = document.querySelector('.active');
-                if(active&&e.target.type === 'button')
-                {
-                    active.classList.remove('active');
-                }
-                if(e.target.type === 'button')
-                {
-                    e.target.classList.add('active');
-                }
-            })
-
-            confirm.addEventListener('click', function(){
-                const active = document.querySelector('.active');
-                if(!active)
-                {
-                    arr[i] = 0;
-                }
-                else
-                {
-                    arr[i] = active.dataset.id*i*2;
-                }
-                let newarr =  JSON.stringify(arr);
-                localStorage.setItem("arr", newarr);
-                let score = Score(arr,i);
-                if(score<=0)
-                {
-                    alert('Success!')
-                }
-                let countx = 0;
-                arr.forEach(element=>{
-                    if(element!==-1)
-                    {
-                        countx++;
-                    }
-                });
-                if(countx===20&&score>0)
-                {
-                    let num = prompt('The 21st round , You can only throw 3 darts in the Bull\'s Eye.How many darts did you hit?(0–one dart was not, 1– one dart, 2– two darts, 3– three darts)');
-                    if(score-(+num)*50<=0)
-                    {
-                        arr[0] = (+num)*50;
-                        Score(arr,i);
-                        alert('Success!')
-                    }
-                    else
-                    {
-                        arr[0] = (+num)*50;
-                        Score(arr,i);
-                        alert('Failure!')
-                    }
-                }
-            })
-
-            reset.addEventListener('click', function(){
-                const active = document.querySelector('.active');
-                if(active)
-                {
-                    active.classList.remove('active');
-                }
-                arr[i] = -1;
-                Score(arr,i);
-            })
-
-            select.addEventListener('change', function(e){
-                    i = e.target.value;
-                    v3.innerHTML = i;
-                    const active = document.querySelector('.active');
-                    if(active)
-                    {
-                        active.classList.remove('active');
-                    }
-                    if(arr[i]!==-1&&arr[i]!==0)
-                    {
-                        let theS = arr[i]/i/2;
-                        let theScore = document.querySelector(`[data-id="${theS}"]`);
-                        theScore.classList.add('active');
-                    }
-                    Score(arr,i);
-            })
-
-            next.addEventListener('click', function () {
-                if (i < 20) {
-                    i++;
-                    v3.innerHTML = i;
-                    select.options[`${i-1}`].selected = true;
-                    const active = document.querySelector('.active');
-                    if(active)
-                    {
-                        active.classList.remove('active');
-                    }
-                    if(arr[i]!==-1&&arr[i]!==0)
-                    {
-                        let theS = arr[i]/i/2;
-                        let theScore = document.querySelector(`[data-id="${theS}"]`);
-                        theScore.classList.add('active');
-                    }
-                    Score(arr,i);
-                } else {
-                    alert('This is illegal operation');
-                }
-            })
-    
-            function Score(scoreArr,p) {
-                if(scoreArr[p]===0)
-                {
-                    button.forEach(element=>{
-                        element.classList.add('nothing');
-                    })
-                }
-                else{
-                    button.forEach(element=>{
-                        if(element.classList.contains('nothing'))
-                        {
-                            element.classList.remove('nothing');
-                        }
-                    })
-                }
-                //当前分数
-                let cur = currentScore;
-                scoreArr.forEach(element => {
-                    if(element !== -1)
-                    {
-                        cur = cur - element;
-                    }
-                });
-                current.innerHTML = "The current score is " + " " + cur;
-
-                //平均数
-                let count = 0;
-                let curmean = meanScore;
-                scoreArr.forEach(element => {
-                    if(element !== -1)
-                    {
-                        curmean+=element;
-                        count++;
-                    }
-                });
-                let temp = 0;
-                if(count !== 0)
-                {
-                    temp = curmean / count;
-                    temp = temp.toFixed(2);
-                }
-                mean.innerHTML = "The mean is " + " " + temp;
-
-                //中位数
-                let array = [];
-                scoreArr.forEach(element=>{
-                    if(element!==-1)
-                    {
-                        array.push(element);
+        function Score(scoreArr, p) {
+            if (scoreArr[p] === 0) {
+                button.forEach(element => {
+                    element.classList.add('nothing');
+                })
+            }
+            else {
+                button.forEach(element => {
+                    if (element.classList.contains('nothing')) {
+                        element.classList.remove('nothing');
                     }
                 })
-                for(let i = 0;i<array.length-1;i++)
-                {
-                    for(let j = 0;j<array.length-i-1;j++)
-                    {
-                        if(array[j]>array[j+1])
-                        {
-                            let help = array[j];
-                            array[j] = array[j+1];
-                            array[j+1] = help;
-                        }
-                    }
+            }
+            //当前分数
+            let cur = currentScore;
+            scoreArr.forEach(element => {
+                if (element !== -1) {
+                    cur = cur - element;
                 }
-                if(array.length!==0)
-                {
-                    let tom = array[Math.floor(array.length/2)];
-                    if(array.length%2===0)
-                    {
-                        tom = (Math.floor(array[(array.length/2-1)]+array[array.length/2]))/2.0;
-                    }
-                    median.innerHTML = "The median is " + " " + tom.toFixed(2);
-                }
-                else{
-                    median.innerHTML = "The median is 0";
-                }
+            });
+            current.innerHTML = "The current score is " + " " + cur;
 
-                //标准差
-                if(array.length!==0)
-                {
-                    let sum = 0;
-                    scoreArr.forEach(element=>{
-                        if(element!==-1)
-                        {
-                            sum+=Math.pow((element-temp),2);
-                        }
-                    })
-                    sum/=count;
-                    sum = Math.pow(sum,0.5);
-                    standardDeviation.innerHTML = "The standard deviation is "+" "+ sum.toFixed(2);
-                }else
-                {
-                    standardDeviation.innerHTML = "The standard deviation is 0";
+            //平均数
+            let count = 0;
+            let curmean = meanScore;
+            scoreArr.forEach(element => {
+                if (element !== -1) {
+                    curmean += element;
+                    count++;
                 }
+            });
+            let temp = 0;
+            if (count !== 0) {
+                temp = curmean / count;
+                temp = temp.toFixed(2);
+            }
+            mean.innerHTML = "The mean is " + " " + temp;
 
-                //最大值
-                let curmax = maxScore;
-                curmax = Math.max(...scoreArr);
-                if(curmax===-1)
-                {
-                    curmax = 0;
+            //中位数
+            let array = [];
+            scoreArr.forEach(element => {
+                if (element !== -1) {
+                    array.push(element);
                 }
-                max.innerHTML = "The max is " + " " + curmax;
-
-                //最小值
-                let curmin = minScore;
-                scoreArr.forEach(element => {
-                    if(element !== -1)
-                    {
-                        curmin = element;
-                        return
+            })
+            for (let i = 0; i < array.length - 1; i++) {
+                for (let j = 0; j < array.length - i - 1; j++) {
+                    if (array[j] > array[j + 1]) {
+                        let help = array[j];
+                        array[j] = array[j + 1];
+                        array[j + 1] = help;
                     }
-                });
-                scoreArr.forEach(element => {
-                    if(element !== -1)
-                    {
-                        curmin = Math.min(curmin,element);
-                    }
-                });
-                min.innerHTML = " The min is " + " " + curmin;
-                return cur;
+                }
+            }
+            if (array.length !== 0) {
+                let tom = array[Math.floor(array.length / 2)];
+                if (array.length % 2 === 0) {
+                    tom = (Math.floor(array[(array.length / 2 - 1)] + array[array.length / 2])) / 2.0;
+                }
+                median.innerHTML = "The median is " + " " + tom.toFixed(2);
+            }
+            else {
+                median.innerHTML = "The median is 0";
             }
 
+            //标准差
+            if (array.length !== 0) {
+                let sum = 0;
+                scoreArr.forEach(element => {
+                    if (element !== -1) {
+                        sum += Math.pow((element - temp), 2);
+                    }
+                })
+                sum /= count;
+                sum = Math.pow(sum, 0.5);
+                standardDeviation.innerHTML = "The standard deviation is " + " " + sum.toFixed(2);
+            } else {
+                standardDeviation.innerHTML = "The standard deviation is 0";
+            }
+
+            //最大值
+            let curmax = maxScore;
+            curmax = Math.max(...scoreArr);
+            if (curmax === -1) {
+                curmax = 0;
+            }
+            max.innerHTML = "The max is " + " " + curmax;
+
+            //最小值
+            let curmin = minScore;
+            scoreArr.forEach(element => {
+                if (element !== -1) {
+                    curmin = element;
+                    return
+                }
+            });
+            scoreArr.forEach(element => {
+                if (element !== -1) {
+                    curmin = Math.min(curmin, element);
+                }
+            });
+            min.innerHTML = " The min is " + " " + curmin;
+            return cur;
+        }
     </script>
 </body>
 

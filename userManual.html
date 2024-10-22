@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>userManual</title>
+    <style>
+        html{
+            scroll-behavior: smooth
+        }
+        
+        .v1 {
+            text-align: center;
+            background-color: aqua;
+        }
+
+        div {
+            display: inline-block;
+            border: 3px dotted black;
+        }
+
+        img {
+            border: 5px solid black;
+        }
+
+        .active {
+            margin: 50px auto 0;
+        }
+
+        a {
+            text-decoration: none;
+            color: black;
+        }
+
+        a:hover {
+            color: blue;
+        }
+
+        ol {
+            border: 1px solid black;
+            margin: 0 auto 20px;
+            padding-left: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <h1 class="v1">User Manual</h1>
+    <ol>
+        <li><a href="#one">Hyperlink to user manual</a></li>
+        <li><a href="#two">Select round</a></li>
+        <li><a href="#three">Current round</a></li>
+        <li><a href="#four">Scoreboard</a></li>
+        <li><a href="#five">Go back to the previous round and move on to the next round</a></li>
+        <li><a href="#six">Introduction to Scoring Steps</a></li>
+        <li><a href="#seven">Results Display</a></li>
+        <li><a href="#eight">Reset button</a></li>
+    </ol>
+    <div id="one">
+        <h3>1.Hyperlink to user manual</h3>
+        <img src="420darts_image/interpret8.png" alt="">
+        <p>Before using the scoreboard, click on the User Manual icon, which is a hyperlink that will redirect to the
+            current page.</p>
+    </div>
+
+    <div class="active" id="two">
+        <h3>2.Select round</h3>
+        <img src="420darts_image/interpret1.png" alt="">
+        <p>The following form is used to select rounds, totaling one to twenty rounds. Users can select one round and go
+            to the current selected round to modify data.</p>
+    </div>
+
+    <div class="active" id="three">
+        <h3>3.Current round</h3>
+        <img src="420darts_image/interpret2.png" alt="">
+        <p>This is the area that displays the current number of rounds, and the number of rounds will be displayed.</p>
+    </div>
+
+    <div class="active" id="four">
+        <h3>4.Scoreboard</h3>
+        ><img src="420darts_image/interpret3.png" alt="">
+        <p>This area mainly displays the current score, mean, median, standard deviation, maximum and minimum values of
+            the current score.</p>
+    </div>
+
+    <div class="active" id="five">
+        <h3>5.Go back to the previous round and move on to the next round</h3>
+        <img src="420darts_image/interpret4.png" alt="">
+        <img src="420darts_image/interpret5.png" alt="">
+        <p>In order to enhance the user experience and facilitate user operation, we have added two buttons, which can
+            be clicked to go back to the previous round and enter the next round.</p>
+    </div>
+
+    <div class="active" id="six">
+        <h3>6.Introduction to Scoring Steps</h3>
+        <img src="420darts_image/interpret7.png" alt="">
+        <p>(1)Firstly, these three buttons represent winning one dart, two darts, and three darts respectively. When we
+            select a button, it will turn red, as shown in the following figure:</p>
+        <img src="420darts_image/interpret11.png" alt="">
+        <p>(2)Subsequently, we need to click the confirm button, and the corresponding data will be displayed on the
+            scoreboard.</p>
+        <img src="420darts_image/interpret17.png" alt="">
+        <img src="420darts_image/interpret15.png" alt="">
+        <p>(3)If we choose the wrong number of darts, we can click the reset button, which will reset the data of the
+            current round, restore the scoreboard to the previous data, and then we can reselect the number of darts we
+            have won.</p>
+        <img src="420darts_image/interpret16.png" alt="">
+        <p>(4)Especially, if none of the darts hit, we can simply click the confirm button. At this point, the three dart
+            count buttons will turn blue, indicating that one dart did not hit in the current round and we will receive
+            zero points.</p>
+        <img src="420darts_image/interpret10.png" alt="">
+    </div>
+
+    <div class="active" id="seven">
+        <h3>7.Results Display</h3>
+        <p>If 420 points are reduced to less than or equal to 0 within 20 rounds, the game is successful.</p>
+        <img src="420darts_image/interpret14.png" alt="">
+        <p>If this goal is not achieved within 20 rounds, proceed to the 21st round and can only shoot at the center,
+            scoring 50 points per dart. At this point, the user will be prompted to enter the number of darts in the
+            21st round. 0 represents missing one dart, 1 represents missing one dart, 2 represents missing two darts,
+            and 3 represents missing three darts.</p>
+        <img src="420darts_image/interpret12.png" alt="">
+        <p>When a number is entered, if the current score reaches the target, the game is successful; if the target is
+            not achieved, the game fails.</p>
+        <img src="420darts_image/interpret13.png" alt="">
+    </div>
+
+    <div class="active" id="eight">
+        <h3>8.Reset button</h3>
+        <p>We have implemented local storage, and all data will be stored in the browser. When this button is clicked,
+            all data will be clear.Then start a new round.</p>
+        <img src="420darts_image/interpret9.png" alt="">
+    </div>
+</body>
+
+</html>
